@@ -42,7 +42,12 @@ function requestListener(req, res) {
     // Kui otsingusõna ei leitud siis näitame kasutajale kõiki tulemusi
     if (otsingusõna == "") {
         filterResults = fruits
-    } else {
+    }
+    // Tulemuste puudumisel kuvab kaldkirjas "Tulemusi ei leitud"
+    else if (fruits.filter(fruit => fruit.startsWith(otsingusõna)) == "") {
+        filterResults = ["<p1><i>Tulemusi ei leitud</i></p1>"]
+    }
+    else {
         // Teeme fruits arrayst koopia milles on ainult puuviljad mis algavad otsingusõnaga
         filterResults = fruits.filter(fruit => fruit.startsWith(otsingusõna))
     }
